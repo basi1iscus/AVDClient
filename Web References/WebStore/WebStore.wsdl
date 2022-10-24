@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:xsd1="http://www.webstore.org" xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.webstore.org" name="WebStore" targetNamespace="http://www.webstore.org" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns:xs1="http://www.webstore.org" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.webstore.org" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="AktSverky">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AktSverkyRows" type="xs1:AktSverkyRow" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="AktSverkyRow">
+        <xs:sequence>
+          <xs:element name="Date" type="xs:string" />
+          <xs:element name="Number" type="xs:string" />
+          <xs:element name="Document" type="xs:string" />
+          <xs:element name="Payment" type="xs:float" />
+          <xs:element name="Shipping" type="xs:float" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Balance">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" type="xs1:BalanceItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="BalanceItem">
+        <xs:sequence>
+          <xs:element name="ItemCode" type="xs:int" />
+          <xs:element name="Balance" type="xs:float" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CustomerInfo">
+        <xs:sequence>
+          <xs:element name="ManagerName" type="xs:string" />
+          <xs:element name="ManagerPhone" type="xs:string" />
+          <xs:element name="ManagerEmail" type="xs:string" />
+          <xs:element name="ManagerSkipe" type="xs:string" />
+          <xs:element name="ManagerICQ" type="xs:string" />
+          <xs:element name="SummaCredit" type="xs:float" />
+          <xs:element name="Currency" type="xs:string" />
+          <xs:element name="DayCredit" type="xs:float" />
+          <xs:element name="FIO" type="xs:string" />
+          <xs:element name="DeliveryInfo" type="xs:string" />
+          <xs:element name="SummaDolg" type="xs:float" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OrdersDolg" type="xs1:OrdersDolgRow" />
+          <xs:element name="EUR" type="xs:float" />
+          <xs:element name="USD" type="xs:float" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Customers">
+        <xs:sequence>
+          <xs:element name="Login" type="xs:string" />
+          <xs:element name="Code" type="xs:string" />
+          <xs:element name="RegistrationKey" type="xs:string" />
+          <xs:element minOccurs="0" name="IP" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Invoice">
+        <xs:sequence>
+          <xs:element name="Number" type="xs:string" />
+          <xs:element name="Date" type="xs:string" />
+          <xs:element name="Total" type="xs:float" />
+          <xs:element name="DeliveryInfo" type="xs:string" />
+          <xs:element name="Status" type="xs:string" />
+          <xs:element name="DeliveryDate" type="xs:string" />
+          <xs:element name="InvoiceID" type="xs:string" />
+          <xs:element name="Currency" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" type="xs1:Table" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="InvoiceList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Invoice" type="xs1:Invoice" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ItemList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemCode" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="News">
+        <xs:sequence>
+          <xs:element name="ID" type="xs:string" />
+          <xs:element name="Date" type="xs:string" />
+          <xs:element name="Info" type="xs:string" />
+          <xs:element name="html" type="xs:string" />
+          <xs:element name="Image001" type="xs:base64Binary" />
+          <xs:element name="Image002" type="xs:base64Binary" />
+          <xs:element name="Image003" type="xs:base64Binary" />
+          <xs:element name="Image004" type="xs:base64Binary" />
+          <xs:element name="Image005" type="xs:base64Binary" />
+          <xs:element name="Image006" type="xs:base64Binary" />
+          <xs:element name="Image007" type="xs:base64Binary" />
+          <xs:element name="Image008" type="xs:base64Binary" />
+          <xs:element name="Image009" type="xs:base64Binary" />
+          <xs:element name="Image010" type="xs:base64Binary" />
+          <xs:element name="ImgsCount" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="NewsList">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="News" type="xs1:News" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Order">
+        <xs:sequence>
+          <xs:element name="OrderNumber" nillable="true" type="xs:string" />
+          <xs:element name="Customer" type="xs1:Customers" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Table" type="xs1:Table" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OrdersDolgRow">
+        <xs:sequence>
+          <xs:element name="Date" type="xs:date" />
+          <xs:element name="Number" type="xs:string" />
+          <xs:element name="PayDate" type="xs:date" />
+          <xs:element name="Days" type="xs:int" />
+          <xs:element name="SummaDolg" type="xs:float" />
+          <xs:element name="Prosrocheno" type="xs:float" />
+          <xs:element name="Today" type="xs:float" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StoreBalance">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" type="xs1:StoreBalanceItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="StoreBalanceItem">
+        <xs:sequence>
+          <xs:element name="ItemCode" type="xs:int" />
+          <xs:element name="Balance" type="xs:float" />
+          <xs:element name="StoreCode" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Table">
+        <xs:sequence>
+          <xs:element name="Num" type="xs:int" />
+          <xs:element name="Code" type="xs:string" />
+          <xs:element name="Price" type="xs:float" />
+          <xs:element name="Quantity" type="xs:float" />
+          <xs:element name="Total" type="xs:float" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="Test">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="TestResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FormOrder">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+            <xs:element name="Order" type="xs1:Order" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="FormOrderResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDatabase">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateDatabaseResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+            <xs:element name="Data" nillable="true" type="xs:base64Binary" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetInvoiceList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+            <xs:element name="Date" type="xs:date" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetInvoiceListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+            <xs:element name="InvoiceList" nillable="true" type="xs1:InvoiceList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AktSverky">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+            <xs:element name="Date1" type="xs:date" />
+            <xs:element name="Date2" type="xs:date" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AktSverkyResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+            <xs:element name="AktSverky" nillable="true" type="xs1:AktSverky" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetImage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+            <xs:element name="GoodsCode" type="xs:string" />
+            <xs:element name="Index" nillable="true" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetImageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:int" />
+            <xs:element name="Data" nillable="true" type="xs:base64Binary" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNewsList">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+            <xs:element name="Date" type="xs:date" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetNewsListResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" nillable="true" type="xs:string" />
+            <xs:element name="News" nillable="true" type="xs1:NewsList" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomerInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetCustomerInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" nillable="true" type="xs:string" />
+            <xs:element name="CustomerInfo" nillable="true" type="xs1:CustomerInfo" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AVDClientRegistration">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="RegistrationKey" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AVDClientRegistrationResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+            <xs:element name="Topic" type="xs:string" />
+            <xs:element name="Message" type="xs:string" />
+            <xs:element name="Destination" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="SendMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAVDClientVersion">
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="GetAVDClientVersionResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateAVDClient">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Customer" type="xs1:Customers" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UpdateAVDClientResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+            <xs:element name="Application" nillable="true" type="xs:base64Binary" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AVDClientRegistrationIP">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="RegistrationKey" type="xs:string" />
+            <xs:element name="IP" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AVDClientRegistrationIPResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="return" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </types>
+  <message name="TestRequestMessage">
+    <part name="parameters" element="tns:Test" />
+  </message>
+  <message name="TestResponseMessage">
+    <part name="parameters" element="tns:TestResponse" />
+  </message>
+  <message name="FormOrderRequestMessage">
+    <part name="parameters" element="tns:FormOrder" />
+  </message>
+  <message name="FormOrderResponseMessage">
+    <part name="parameters" element="tns:FormOrderResponse" />
+  </message>
+  <message name="UpdateDatabaseRequestMessage">
+    <part name="parameters" element="tns:UpdateDatabase" />
+  </message>
+  <message name="UpdateDatabaseResponseMessage">
+    <part name="parameters" element="tns:UpdateDatabaseResponse" />
+  </message>
+  <message name="GetInvoiceListRequestMessage">
+    <part name="parameters" element="tns:GetInvoiceList" />
+  </message>
+  <message name="GetInvoiceListResponseMessage">
+    <part name="parameters" element="tns:GetInvoiceListResponse" />
+  </message>
+  <message name="AktSverkyRequestMessage">
+    <part name="parameters" element="tns:AktSverky" />
+  </message>
+  <message name="AktSverkyResponseMessage">
+    <part name="parameters" element="tns:AktSverkyResponse" />
+  </message>
+  <message name="GetImageRequestMessage">
+    <part name="parameters" element="tns:GetImage" />
+  </message>
+  <message name="GetImageResponseMessage">
+    <part name="parameters" element="tns:GetImageResponse" />
+  </message>
+  <message name="GetNewsListRequestMessage">
+    <part name="parameters" element="tns:GetNewsList" />
+  </message>
+  <message name="GetNewsListResponseMessage">
+    <part name="parameters" element="tns:GetNewsListResponse" />
+  </message>
+  <message name="GetCustomerInfoRequestMessage">
+    <part name="parameters" element="tns:GetCustomerInfo" />
+  </message>
+  <message name="GetCustomerInfoResponseMessage">
+    <part name="parameters" element="tns:GetCustomerInfoResponse" />
+  </message>
+  <message name="AVDClientRegistrationRequestMessage">
+    <part name="parameters" element="tns:AVDClientRegistration" />
+  </message>
+  <message name="AVDClientRegistrationResponseMessage">
+    <part name="parameters" element="tns:AVDClientRegistrationResponse" />
+  </message>
+  <message name="SendMessageRequestMessage">
+    <part name="parameters" element="tns:SendMessage" />
+  </message>
+  <message name="SendMessageResponseMessage">
+    <part name="parameters" element="tns:SendMessageResponse" />
+  </message>
+  <message name="GetAVDClientVersionRequestMessage">
+    <part name="parameters" element="tns:GetAVDClientVersion" />
+  </message>
+  <message name="GetAVDClientVersionResponseMessage">
+    <part name="parameters" element="tns:GetAVDClientVersionResponse" />
+  </message>
+  <message name="UpdateAVDClientRequestMessage">
+    <part name="parameters" element="tns:UpdateAVDClient" />
+  </message>
+  <message name="UpdateAVDClientResponseMessage">
+    <part name="parameters" element="tns:UpdateAVDClientResponse" />
+  </message>
+  <message name="AVDClientRegistrationIPRequestMessage">
+    <part name="parameters" element="tns:AVDClientRegistrationIP" />
+  </message>
+  <message name="AVDClientRegistrationIPResponseMessage">
+    <part name="parameters" element="tns:AVDClientRegistrationIPResponse" />
+  </message>
+  <portType name="WebStorePortType">
+    <operation name="Test">
+      <input message="tns:TestRequestMessage" />
+      <output message="tns:TestResponseMessage" />
+    </operation>
+    <operation name="FormOrder">
+      <input message="tns:FormOrderRequestMessage" />
+      <output message="tns:FormOrderResponseMessage" />
+    </operation>
+    <operation name="UpdateDatabase">
+      <input message="tns:UpdateDatabaseRequestMessage" />
+      <output message="tns:UpdateDatabaseResponseMessage" />
+    </operation>
+    <operation name="GetInvoiceList">
+      <input message="tns:GetInvoiceListRequestMessage" />
+      <output message="tns:GetInvoiceListResponseMessage" />
+    </operation>
+    <operation name="AktSverky">
+      <input message="tns:AktSverkyRequestMessage" />
+      <output message="tns:AktSverkyResponseMessage" />
+    </operation>
+    <operation name="GetImage">
+      <input message="tns:GetImageRequestMessage" />
+      <output message="tns:GetImageResponseMessage" />
+    </operation>
+    <operation name="GetNewsList">
+      <input message="tns:GetNewsListRequestMessage" />
+      <output message="tns:GetNewsListResponseMessage" />
+    </operation>
+    <operation name="GetCustomerInfo">
+      <input message="tns:GetCustomerInfoRequestMessage" />
+      <output message="tns:GetCustomerInfoResponseMessage" />
+    </operation>
+    <operation name="AVDClientRegistration">
+      <input message="tns:AVDClientRegistrationRequestMessage" />
+      <output message="tns:AVDClientRegistrationResponseMessage" />
+    </operation>
+    <operation name="SendMessage">
+      <input message="tns:SendMessageRequestMessage" />
+      <output message="tns:SendMessageResponseMessage" />
+    </operation>
+    <operation name="GetAVDClientVersion">
+      <input message="tns:GetAVDClientVersionRequestMessage" />
+      <output message="tns:GetAVDClientVersionResponseMessage" />
+    </operation>
+    <operation name="UpdateAVDClient">
+      <input message="tns:UpdateAVDClientRequestMessage" />
+      <output message="tns:UpdateAVDClientResponseMessage" />
+    </operation>
+    <operation name="AVDClientRegistrationIP">
+      <input message="tns:AVDClientRegistrationIPRequestMessage" />
+      <output message="tns:AVDClientRegistrationIPResponseMessage" />
+    </operation>
+  </portType>
+  <binding name="WebStoreSoapBinding" type="tns:WebStorePortType">
+    <soapbind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="Test">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:Test" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FormOrder">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:FormOrder" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateDatabase">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:UpdateDatabase" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInvoiceList">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:GetInvoiceList" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AktSverky">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:AktSverky" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetImage">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:GetImage" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetNewsList">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:GetNewsList" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCustomerInfo">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:GetCustomerInfo" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AVDClientRegistration">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:AVDClientRegistration" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SendMessage">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:SendMessage" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetAVDClientVersion">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:GetAVDClientVersion" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateAVDClient">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:UpdateAVDClient" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AVDClientRegistrationIP">
+      <soapbind:operation soapAction="http://www.webstore.org#WebStore:AVDClientRegistrationIP" style="document" />
+      <input>
+        <soapbind:body use="literal" />
+      </input>
+      <output>
+        <soapbind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <binding name="WebStoreSoap12Binding" type="tns:WebStorePortType">
+    <soap12bind:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="Test">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:Test" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="FormOrder">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:FormOrder" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateDatabase">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:UpdateDatabase" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInvoiceList">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:GetInvoiceList" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AktSverky">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:AktSverky" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetImage">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:GetImage" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetNewsList">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:GetNewsList" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCustomerInfo">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:GetCustomerInfo" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AVDClientRegistration">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:AVDClientRegistration" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SendMessage">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:SendMessage" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetAVDClientVersion">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:GetAVDClientVersion" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateAVDClient">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:UpdateAVDClient" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+    <operation name="AVDClientRegistrationIP">
+      <soap12bind:operation soapAction="http://www.webstore.org#WebStore:AVDClientRegistrationIP" style="document" />
+      <input>
+        <soap12bind:body use="literal" />
+      </input>
+      <output>
+        <soap12bind:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="WebStore">
+    <port name="WebStoreSoap" binding="tns:WebStoreSoapBinding">
+      <documentation>
+        <wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" conformsTo="http://ws-i.org/profiles/basic/1.1" />
+      </documentation>
+      <soapbind:address location="http://avdtrade.re2is.info/WebZakaz/ws/WebStore" />
+    </port>
+    <port name="WebStoreSoap12" binding="tns:WebStoreSoap12Binding">
+      <soap12bind:address location="http://avdtrade.re2is.info/WebZakaz/ws/WebStore" />
+    </port>
+  </service>
+</definitions>
