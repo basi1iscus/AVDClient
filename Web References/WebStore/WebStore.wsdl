@@ -714,10 +714,10 @@
       <documentation>
         <wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" conformsTo="http://ws-i.org/profiles/basic/1.1" />
       </documentation>
-      <soapbind:address location="http://avdtrade.re2is.info/WebZakaz/ws/WebStore" />
+      <soapbind:address location="http://avdclient.re2is.info/WebZakaz/ws/WebStore" />
     </port>
     <port name="WebStoreSoap12" binding="tns:WebStoreSoap12Binding">
-      <soap12bind:address location="http://avdtrade.re2is.info/WebZakaz/ws/WebStore" />
+      <soap12bind:address location="http://avdclient.re2is.info/WebZakaz/ws/WebStore" />
     </port>
   </service>
 </definitions>
